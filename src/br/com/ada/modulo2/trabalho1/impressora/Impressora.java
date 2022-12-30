@@ -18,6 +18,9 @@ public class Impressora {
         imprimirLinhaDelimitadora();
     }
 
-    
+    private static void imprimirLinhaDelimitadora() {
+        System.out.println("+" + "-".repeat(comprimentoDelinha) + "+");
+    }
+
 
 }
