@@ -70,6 +70,16 @@ public class Impressora {
 
     }
 
+    private static String[][] retornarMatrizDeComponentesParaMenu(String[] opcoes) {
+        String[][] matriz = new String[opcoes.length][2];
+        for (int i = 0; i < opcoes.length; i++) {
+            String opcao = opcoes[i];
+            matriz[i][0] = "| " + opcao + " |";
+            matriz[i][1] = "+" + "-".repeat(opcao.length() +2) + "+";
+        }
+        return matriz;
+    }
+
     private static void imprimirLinhaDelimitadora() {
         System.out.println("+" + "-".repeat(comprimentoDelinha) + "+");
     }
