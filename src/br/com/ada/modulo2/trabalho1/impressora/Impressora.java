@@ -47,4 +47,16 @@ public class Impressora {
         }
     }
 
+    private static void imprimirLinhaIndentadaFormatada(String linha) {
+        int numDeEspacos = (comprimentoDelinha - linha.length());
+        int espacosDeCadaLado = numDeEspacos / 2;
+        int diferencialParOuImpar = numDeEspacos % 2;
+
+        String linhaFormatada = "|" + " ".repeat(espacosDeCadaLado) +
+                linha +
+                " ".repeat(espacosDeCadaLado + diferencialParOuImpar) +"|";
+
+        System.out.println(linhaFormatada);
+    }
+
 }
