@@ -22,5 +22,29 @@ public class Impressora {
         System.out.println("+" + "-".repeat(comprimentoDelinha) + "+");
     }
 
+    private static void imprimirStringMultiLinhasFormatada(String string) {
+        String arrayDeStrings[] = string.trim().split(" "), linhaAtual = "";
+
+        for (int indice = 0; indice < arrayDeStrings.length; indice ++) {
+
+            String palavra = arrayDeStrings[indice];
+
+            boolean palavraCabeNaLinha =
+                    (palavra.length() + linhaAtual.length() + 1 < comprimentoDelinha -6);
+
+            if (palavraCabeNaLinha) {
+                linhaAtual += palavra + " ";
+            } else {
+                imprimirLinhaIndentadaFormatada(linhaAtual);
+                linhaAtual = palavra + " ";
+            }
+
+            boolean ultimaLinha = (indice == arrayDeStrings.length -1);
+            if (ultimaLinha) {
+                imprimirLinhaIndentadaFormatada(linhaAtual);
+                return;
+            }
+        }
+    }
 
 }
