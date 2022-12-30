@@ -18,6 +18,51 @@ public class Impressora {
         imprimirLinhaDelimitadora();
     }
 
+    public static void imprimirMenuComOpcoes(String[] opcoes) {
+
+        String[][] matrizDeOpcoes = retornarMatrizDeComponentesParaMenu(opcoes);
+        imprimirLinhaDelimitadora();
+        String linhaExternaDosBotoes = "", linhaInternaDosBotoes = "";
+
+        for (int i = 0, opcoesAdicionadas = 0; i < matrizDeOpcoes.length; i++) {
+
+            boolean opcaoCabeNaLinha =
+                    (matrizDeOpcoes[i][1].length() +linhaInternaDosBotoes.length() < comprimentoDelinha - 4);
+
+            if (opcaoCabeNaLinha) {
+                String textoDaOpcao = matrizDeOpcoes[i][0], delimitadorDaOpcao = matrizDeOpcoes[i][1];
+                linhaInternaDosBotoes += textoDaOpcao + " ".repeat(2);
+                linhaExternaDosBotoes += delimitadorDaOpcao + " ".repeat(2);
+                opcoesAdicionadas++;
+            }
+
+            if (!opcaoCabeNaLinha || i == matrizDeOpcoes.length - 1) {
+                String diferencialParOuImpar =
+                        " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) % 2);
+                String espacosDeCadaLado =
+                        " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) / 2);
+
+                imprimirLinhaComOpcoes(espacosDeCadaLado, linhaInternaDosBotoes,
+                        linhaExternaDosBotoes, diferencialParOuImpar);
+
+                String textoDaOpcao = matrizDeOpcoes[i][0], delimitadorDaOpcao = matrizDeOpcoes[i][1];
+                linhaExternaDosBotoes = "" + delimitadorDaOpcao + " ".repeat(2);
+                linhaInternaDosBotoes = "" + textoDaOpcao + " ".repeat(2);
+
+                if(i == matrizDeOpcoes.length -1 && opcoesAdicionadas != i && i % 2 != 0 && matrizDeOpcoes.length >2) {
+                    diferencialParOuImpar =
+                            " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) % 2);
+                    espacosDeCadaLado =
+                            " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) / 2);
+
+                    imprimirLinhaComOpcoes(espacosDeCadaLado, linhaInternaDosBotoes,
+                            linhaExternaDosBotoes, diferencialParOuImpar);
+                }
+            }
+        }
+        imprimirLinhaDelimitadora();
+    }
+
     private static void imprimirLinhaDelimitadora() {
         System.out.println("+" + "-".repeat(comprimentoDelinha) + "+");
     }
