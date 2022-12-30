@@ -63,6 +63,13 @@ public class Impressora {
         imprimirLinhaDelimitadora();
     }
 
+    private static void imprimirLinhaComOpcoes(String espacosDeCadaLado, String linhaInternaDosBotoes, String linhaExternaDosBotoes, String diferencialParOuImpar) {
+        System.out.println("|" + espacosDeCadaLado + linhaExternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|");
+        System.out.println("|" + espacosDeCadaLado + linhaInternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|");
+        System.out.println("|" + espacosDeCadaLado + linhaExternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|");
+
+    }
+
     private static void imprimirLinhaDelimitadora() {
         System.out.println("+" + "-".repeat(comprimentoDelinha) + "+");
     }
