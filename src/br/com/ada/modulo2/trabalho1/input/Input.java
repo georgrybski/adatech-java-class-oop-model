@@ -40,5 +40,13 @@ public class Input {
         }
         return receberInt();
     }
+
+    public static double receberDouble() {
+        Double doub = (Double) inputTipo("double");
+        if (doub != null) {
+            return doub.doubleValue();
+        }
+        return receberDouble();
+    }
     
 }
