@@ -1,10 +1,15 @@
 package br.com.ada.modulo2.trabalho1.impressora;
 
+/**
+ * Classe que lida com a impressão de menus e prompts para o usuario.
+ */
 public class Impressora {
 
-    private static int comprimentoDelinha =  82;
+    // Comprimento usado para imprimir os menus e mensagens.
+    private static final int COMPRIMENTO_DE_LINHA =  82;
 
     private Impressora() {}
+
 
     /**
      * É um método que imprime uma String destinada ao usuario, de forma formatada.
@@ -13,7 +18,7 @@ public class Impressora {
     public static void imprimirMensagemFormatada(String mensagem) {
         imprimirLinhaDelimitadora();
 
-        boolean mensagemMaiorQueLinha = (mensagem.length() > comprimentoDelinha - 6);
+        boolean mensagemMaiorQueLinha = (mensagem.length() > COMPRIMENTO_DE_LINHA - 6);
         if (mensagemMaiorQueLinha) {
             imprimirStringMultiLinhasFormatada(mensagem);
         } else {
@@ -21,6 +26,7 @@ public class Impressora {
         }
         imprimirLinhaDelimitadora();
     }
+
 
     /**
      * É um método que imprime um menu formatado.
@@ -36,7 +42,7 @@ public class Impressora {
         for (int i = 0, opcoesAdicionadas = 0; i < matrizDeOpcoes.length; i++) {
 
             boolean opcaoCabeNaLinha =
-                    (matrizDeOpcoes[i][1].length() +linhaInternaDosBotoes.length() < comprimentoDelinha - 4);
+                    (matrizDeOpcoes[i][1].length() +linhaInternaDosBotoes.length() < COMPRIMENTO_DE_LINHA - 4);
 
             if (opcaoCabeNaLinha) {
                 String textoDaOpcao = matrizDeOpcoes[i][0], delimitadorDaOpcao = matrizDeOpcoes[i][1];
@@ -48,9 +54,9 @@ public class Impressora {
             boolean ultimaIteracaoOuOpcaoNaoCabe = (!opcaoCabeNaLinha || i == matrizDeOpcoes.length - 1);
             if (ultimaIteracaoOuOpcaoNaoCabe) {
                 String diferencialParOuImpar =
-                        " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) % 2);
+                        " ".repeat((COMPRIMENTO_DE_LINHA - linhaInternaDosBotoes.trim().length()) % 2);
                 String espacosDeCadaLado =
-                        " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) / 2);
+                        " ".repeat((COMPRIMENTO_DE_LINHA - linhaInternaDosBotoes.trim().length()) / 2);
 
                 imprimirLinhaComOpcoes(espacosDeCadaLado, linhaInternaDosBotoes,
                         linhaExternaDosBotoes, diferencialParOuImpar);
@@ -62,16 +68,16 @@ public class Impressora {
                 // Checar ultima iteração evita duplicidade de valores na quarta linha de botões
                 boolean ultimaIteracao = (i == matrizDeOpcoes.length -1);
 
-                // Checar se são mais de duas opções evita duplicidade de valores caso o menu tenha apenas duas opções
+                // Checar se são mais de duas opções, evita duplicidade de valores caso o menu tenha apenas duas opções
                 // que normalmente não ocupariam a terceira linha.
                 boolean maisDeDuasOpcoes = (matrizDeOpcoes.length >2);
 
-                // Checar se o número de opções é impar ajuda a evitar duplicidade de valores na ultima linha em menu
+                // Checar se o número de opções é impar ajuda a evitar duplicidade de valores na última linha em menu
                 // com número de opções impar maior que 3.
                 boolean numeroImparDeOpcoes = (i % 2 != 0);
 
-                // Checar se o número de iterações é diferente do número de opções adicionada tinha o objetivo de evitar
-                // que opções não fossem impressas, porém, nos ultimos testes utilizados não houve diferença.
+                // Checar se o número de iterações difere do número de opções adicionadas tinha o objetivo de evitar
+                // que opções não fossem impressas, porém, nos últimos testes utilizados não houve diferença.
                 boolean numberodeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes = (opcoesAdicionadas != i);
 
                 boolean condicao = (ultimaIteracao && maisDeDuasOpcoes && numeroImparDeOpcoes
@@ -79,9 +85,9 @@ public class Impressora {
 
                 if(condicao) {
                     diferencialParOuImpar =
-                            " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) % 2);
+                            " ".repeat((COMPRIMENTO_DE_LINHA - linhaInternaDosBotoes.trim().length()) % 2);
                     espacosDeCadaLado =
-                            " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) / 2);
+                            " ".repeat((COMPRIMENTO_DE_LINHA - linhaInternaDosBotoes.trim().length()) / 2);
 
                     imprimirLinhaComOpcoes(espacosDeCadaLado, linhaInternaDosBotoes,
                             linhaExternaDosBotoes, diferencialParOuImpar);
@@ -90,6 +96,7 @@ public class Impressora {
         }
         imprimirLinhaDelimitadora();
     }
+
 
     /**
      * Componente do método imprimirMenuComOpcoes.
@@ -103,6 +110,7 @@ public class Impressora {
         System.out.println(linhaInterna);
         System.out.println(linhaExterna);
     }
+
 
     /**
      * Componente do método imprimirMenuComOpcoes.
@@ -119,13 +127,15 @@ public class Impressora {
         return matriz;
     }
 
+
     /**
      * Componente do método imprimirMenuComOpcoes e imprimirMensagemFormatada.
      * É usada para imprimir a linha externa superior e inferior das "caixas" em ambos os métodos.
      */
     private static void imprimirLinhaDelimitadora() {
-        System.out.println("+" + "-".repeat(comprimentoDelinha) + "+");
+        System.out.println("+" + "-".repeat(COMPRIMENTO_DE_LINHA) + "+");
     }
+
 
     /**
      * Componente do método imprimirMensagemFormatada.
@@ -134,14 +144,15 @@ public class Impressora {
      * Recebe uma String como argumento.
      */
     private static void imprimirStringMultiLinhasFormatada(String string) {
-        String arrayDeStrings[] = string.trim().split(" "), linhaAtual = "";
+        String[] arrayDeStrings = string.trim().split(" ");
+        String linhaAtual = "";
 
         for (int indice = 0; indice < arrayDeStrings.length; indice ++) {
 
             String palavra = arrayDeStrings[indice];
 
             boolean palavraCabeNaLinha =
-                    (palavra.length() + linhaAtual.length() + 1 < comprimentoDelinha -6);
+                    (palavra.length() + linhaAtual.length() + 1 < COMPRIMENTO_DE_LINHA -6);
 
             if (palavraCabeNaLinha) {
                 linhaAtual += palavra + " ";
@@ -158,13 +169,14 @@ public class Impressora {
         }
     }
 
+
     /**
      * Componente do método imprimirStringMultiLinhasFormatada.
      * Lida com a impressão de cada linha requisitada pelo método imprimirStringMultiLinhasFormatada.
      * Recebe uma String como argumento.
      */
     private static void imprimirLinhaIndentadaFormatada(String linha) {
-        int numDeEspacos = (comprimentoDelinha - linha.length());
+        int numDeEspacos = (COMPRIMENTO_DE_LINHA - linha.length());
         int espacosDeCadaLado = numDeEspacos / 2;
         int diferencialParOuImpar = numDeEspacos % 2;
 
