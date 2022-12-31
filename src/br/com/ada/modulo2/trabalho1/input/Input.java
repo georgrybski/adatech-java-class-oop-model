@@ -24,4 +24,13 @@ public class Input {
             return null;
         }
     }
+
+    public static String receberString() {
+        String string = (String) inputTipo("String");
+        if (string != null) {
+            return string;
+        }
+        return receberString();
+    }
+    
 }
