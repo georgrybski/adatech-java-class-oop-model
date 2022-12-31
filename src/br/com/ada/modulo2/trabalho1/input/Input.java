@@ -32,5 +32,13 @@ public class Input {
         }
         return receberString();
     }
+
+    public static int receberInt() {
+        Integer integer = (int) inputTipo("int");
+        if (integer != null) {
+            return integer.intValue();
+        }
+        return receberInt();
+    }
     
 }
