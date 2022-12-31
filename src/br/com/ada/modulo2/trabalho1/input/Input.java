@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Input {
 
     private Input() {}
-
+    
     private static Object inputTipo(String tipo) {
         Scanner scn = new Scanner(System.in);
         Object input;
@@ -34,7 +34,7 @@ public class Input {
     }
 
     public static int receberInt() {
-        Integer integer = (int) inputTipo("int");
+        Integer integer = (Integer) inputTipo("int");
         if (integer != null) {
             return integer.intValue();
         }
@@ -48,5 +48,5 @@ public class Input {
         }
         return receberDouble();
     }
-    
+
 }
