@@ -6,6 +6,10 @@ public class Impressora {
 
     private Impressora() {}
 
+    /**
+     * É um método que imprime uma String destinada ao usuario, de forma formatada.
+     * Recebe uma String como argumento.
+     */
     public static void imprimirMensagemFormatada(String mensagem) {
         imprimirLinhaDelimitadora();
 
@@ -18,6 +22,11 @@ public class Impressora {
         imprimirLinhaDelimitadora();
     }
 
+    /**
+     * É um método que imprime um menu formatado.
+     * Recebe um array de Strings, onde cada String representa uma opção.
+     * As opções são colocadas dentro de "caixas" e estas, são colocadas juntas em uma "caixa" maior.
+     */
     public static void imprimirMenuComOpcoes(String[] opcoes) {
 
         String[][] matrizDeOpcoes = retornarMatrizDeComponentesParaMenu(opcoes);
@@ -82,6 +91,10 @@ public class Impressora {
         imprimirLinhaDelimitadora();
     }
 
+    /**
+     * Componente do método imprimirMenuComOpcoes.
+     * Imprime as 3 linhas que compõe as "caixas" de opções necessárias para imprimir um menu formatado.
+     */
     private static void imprimirLinhaComOpcoes(String espacosDeCadaLado, String linhaInternaDosBotoes, String linhaExternaDosBotoes, String diferencialParOuImpar) {
         String linhaExterna = "|" + espacosDeCadaLado + linhaExternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|";
         String linhaInterna = "|" + espacosDeCadaLado + linhaInternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|";
@@ -91,6 +104,11 @@ public class Impressora {
         System.out.println(linhaExterna);
     }
 
+    /**
+     * Componente do método imprimirMenuComOpcoes.
+     * Recebe como argumento o Array de Strings de opções.
+     * Retorna uma matriz, contendo as linhas internas e externas de cada caixa para cada opção.
+     */
     private static String[][] retornarMatrizDeComponentesParaMenu(String[] opcoes) {
         String[][] matriz = new String[opcoes.length][2];
         for (int i = 0; i < opcoes.length; i++) {
@@ -101,10 +119,20 @@ public class Impressora {
         return matriz;
     }
 
+    /**
+     * Componente do método imprimirMenuComOpcoes e imprimirMensagemFormatada.
+     * É usada para imprimir a linha externa superior e inferior das "caixas" em ambos os métodos.
+     */
     private static void imprimirLinhaDelimitadora() {
         System.out.println("+" + "-".repeat(comprimentoDelinha) + "+");
     }
 
+    /**
+     * Componente do método imprimirMensagemFormatada.
+     * É usada para imprimir uma String (usando quantas linhas for necessário).
+     * A Impressão final também tem delimitadores em cada linha, para compor as laterais da "caixa".
+     * Recebe uma String como argumento.
+     */
     private static void imprimirStringMultiLinhasFormatada(String string) {
         String arrayDeStrings[] = string.trim().split(" "), linhaAtual = "";
 
@@ -130,6 +158,11 @@ public class Impressora {
         }
     }
 
+    /**
+     * Componente do método imprimirStringMultiLinhasFormatada.
+     * Lida com a impressão de cada linha requisitada pelo método imprimirStringMultiLinhasFormatada.
+     * Recebe uma String como argumento.
+     */
     private static void imprimirLinhaIndentadaFormatada(String linha) {
         int numDeEspacos = (comprimentoDelinha - linha.length());
         int espacosDeCadaLado = numDeEspacos / 2;
