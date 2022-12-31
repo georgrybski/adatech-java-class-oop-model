@@ -65,7 +65,7 @@ public class Impressora {
                 linhaExternaDosBotoes = "" + delimitadorDaOpcao + " ".repeat(2);
                 linhaInternaDosBotoes = "" + textoDaOpcao + " ".repeat(2);
 
-                // Checar ultima iteração evita duplicidade de valores na quarta linha de botões
+                // Checar ultima iteração evita duplicidade de valores na quarta linha de botões.
                 boolean ultimaIteracao = (i == matrizDeOpcoes.length -1);
 
                 // Checar se são mais de duas opções, evita duplicidade de valores caso o menu tenha apenas duas opções
@@ -74,16 +74,30 @@ public class Impressora {
 
                 // Checar se o número de opções é impar ajuda a evitar duplicidade de valores na última linha em menu
                 // com número de opções impar maior que 3.
-                boolean numeroImparDeOpcoes = (i % 2 != 0);
+                boolean numeroParDeIteracoes = (i % 2 != 0);
 
-                // Checar se o número de iterações difere do número de opções adicionadas tinha o objetivo de evitar
-                // que opções não fossem impressas, porém, nos últimos testes utilizados não houve diferença.
-                boolean numberodeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes = (opcoesAdicionadas != i);
+                // Checar se o número de iterações difere do número de opções adicionadas dependendo do caso evita
+                // que opções não sejam impressas e também duplicidade de úlitma opção.
+                boolean numberoDeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes = (opcoesAdicionadas != i+1);
 
-                boolean condicao = (ultimaIteracao && maisDeDuasOpcoes && numeroImparDeOpcoes
-                        && numberodeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes);
+                // Checar se o número difere de 6 evita duplicidade da última opção em
+                // linha que não deveria existir.
+                boolean numeroDeOpcoesDiferenteDe6 = (matrizDeOpcoes.length != 6);
 
-                if(condicao) {
+                // Checar se o número é multiplo de 5 evita com que última opção em multiplos de 5 não seja impressa.
+                boolean multiploDe5 = (matrizDeOpcoes.length % 5 == 0);
+
+                // Multiplos destes números teriam duplicidade da última opção em linha que não deveria existir.
+                boolean naoMultiploDe10ou14ou16 = (matrizDeOpcoes.length % 10 != 0 &&
+                                                   matrizDeOpcoes.length % 14 != 0 &&
+                                                   matrizDeOpcoes.length % 16 != 0);
+
+                boolean maisUmaLinhaDeOpcoesNecessaria = (ultimaIteracao && maisDeDuasOpcoes && numeroParDeIteracoes &&
+                                    numberoDeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes &&
+                                    numeroDeOpcoesDiferenteDe6 && naoMultiploDe10ou14ou16)
+                                    || (ultimaIteracao && multiploDe5 && naoMultiploDe10ou14ou16);
+
+                if(maisUmaLinhaDeOpcoesNecessaria) {
                     diferencialParOuImpar =
                             " ".repeat((COMPRIMENTO_DE_LINHA - linhaInternaDosBotoes.trim().length()) % 2);
                     espacosDeCadaLado =
