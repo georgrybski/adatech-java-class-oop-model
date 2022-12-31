@@ -36,7 +36,8 @@ public class Impressora {
                 opcoesAdicionadas++;
             }
 
-            if (!opcaoCabeNaLinha || i == matrizDeOpcoes.length - 1) {
+            boolean ultimaIteracaoOuOpcaoNaoCabe = (!opcaoCabeNaLinha || i == matrizDeOpcoes.length - 1);
+            if (ultimaIteracaoOuOpcaoNaoCabe) {
                 String diferencialParOuImpar =
                         " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) % 2);
                 String espacosDeCadaLado =
@@ -49,7 +50,25 @@ public class Impressora {
                 linhaExternaDosBotoes = "" + delimitadorDaOpcao + " ".repeat(2);
                 linhaInternaDosBotoes = "" + textoDaOpcao + " ".repeat(2);
 
-                if(i == matrizDeOpcoes.length -1 && opcoesAdicionadas != i && i % 2 != 0 && matrizDeOpcoes.length >2) {
+                // Checar ultima iteração evita duplicidade de valores na quarta linha de botões
+                boolean ultimaIteracao = (i == matrizDeOpcoes.length -1);
+
+                // Checar se são mais de duas opções evita duplicidade de valores caso o menu tenha apenas duas opções
+                // que normalmente não ocupariam a terceira linha.
+                boolean maisDeDuasOpcoes = (matrizDeOpcoes.length >2);
+
+                // Checar se o número de opções é impar ajuda a evitar duplicidade de valores na ultima linha em menu
+                // com número de opções impar maior que 3.
+                boolean numeroImparDeOpcoes = (i % 2 != 0);
+
+                // Checar se o número de iterações é diferente do número de opções adicionada tinha o objetivo de evitar
+                // que opções não fossem impressas, porém, nos ultimos testes utilizados não houve diferença.
+                boolean numberodeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes = (opcoesAdicionadas != i);
+
+                boolean condicao = (ultimaIteracao && maisDeDuasOpcoes && numeroImparDeOpcoes
+                        && numberodeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes);
+
+                if(condicao) {
                     diferencialParOuImpar =
                             " ".repeat((comprimentoDelinha - linhaInternaDosBotoes.trim().length()) % 2);
                     espacosDeCadaLado =
@@ -64,10 +83,12 @@ public class Impressora {
     }
 
     private static void imprimirLinhaComOpcoes(String espacosDeCadaLado, String linhaInternaDosBotoes, String linhaExternaDosBotoes, String diferencialParOuImpar) {
-        System.out.println("|" + espacosDeCadaLado + linhaExternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|");
-        System.out.println("|" + espacosDeCadaLado + linhaInternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|");
-        System.out.println("|" + espacosDeCadaLado + linhaExternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|");
+        String linhaExterna = "|" + espacosDeCadaLado + linhaExternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|";
+        String linhaInterna = "|" + espacosDeCadaLado + linhaInternaDosBotoes.trim() + espacosDeCadaLado +diferencialParOuImpar + "|";
 
+        System.out.println(linhaExterna);
+        System.out.println(linhaInterna);
+        System.out.println(linhaExterna);
     }
 
     private static String[][] retornarMatrizDeComponentesParaMenu(String[] opcoes) {
