@@ -40,8 +40,8 @@ public class Input {
 
     /**
      * Sobrecarga do método receberInt.
-     * Checa se o valor int retornado pelo receberInt está estre o valor min e max, caso seja, o retorna, caso não,
-     * faz chamada recursiva do prórprio método.
+     * Checa se o valor int retornado pelo receberInt está entre min e max (de forma inclusiva), caso seja, o retorna,
+     * caso não, faz chamada recursiva do prórprio método.
      * @param min: valor mínimo aceito.
      * @param max: valor máximo aceito.
      * @return int
@@ -65,6 +65,22 @@ public class Input {
             return input;
         }
         return receberDouble();
+    }
+
+    /**
+     * Sobrecarga do método receberInt.
+     * Checa se o valor double retornado pelo receberDouble está entre min e max (de forma inclusiva), caso seja, o retorna,
+     * caso não, faz chamada recursiva do prórprio método.
+     * @param min: valor mínimo aceito.
+     * @param max: valor máximo aceito.
+     * @return double
+     */
+    public static double receberDouble(double min, double max) {
+        double input = receberDouble();
+        if (input >= min && input <= max) {
+            return input;
+        }
+        return receberDouble(min, max);
     }
 
     /**
