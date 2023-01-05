@@ -31,11 +31,27 @@ public class Input {
      * @return int
      */
     public static int receberInt() {
-        Integer integer = (Integer) inputTipo("int");
-        if (integer != null) {
-            return integer.intValue();
+        Integer input = (Integer) inputTipo("int");
+        if (input != null) {
+            return input;
         }
         return receberInt();
+    }
+
+    /**
+     * Sobrecarga do método receberInt.
+     * Checa se o valor int retornado pelo receberInt está estre o valor min e max, caso seja, o retorna, caso não,
+     * faz chamada recursiva do prórprio método.
+     * @param min: valor mínimo aceito.
+     * @param max: valor máximo aceito.
+     * @return int
+     */
+    public static int receberInt(int min, int max) {
+        int input = receberInt();
+        if (input >= min && input <= max) {
+            return input;
+        }
+        return receberInt(min, max);
     }
 
     /**
@@ -44,9 +60,9 @@ public class Input {
      * @return double
      */
     public static double receberDouble() {
-        Double doub = (Double) inputTipo("double");
-        if (doub != null) {
-            return doub.doubleValue();
+        Double input = (Double) inputTipo("double");
+        if (input != null) {
+            return input;
         }
         return receberDouble();
     }
@@ -75,5 +91,4 @@ public class Input {
             return null;
         }
     }
-
 }
