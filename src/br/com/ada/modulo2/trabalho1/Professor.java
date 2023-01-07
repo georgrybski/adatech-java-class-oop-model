@@ -15,4 +15,14 @@ public class Professor {
         this.nome = nome;
         this.ID = contadorDeID++;
     }
+
+    //    TODO
+//    public static Double calcularMediaGlobal(Aluno aluno) {
+//
+//    }
+
+    public static void contratarProfessor(String nome) {
+        professores.add(new Professor(nome));
+    }
+
 }
