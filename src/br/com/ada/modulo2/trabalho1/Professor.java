@@ -26,7 +26,7 @@ public class Professor {
     }
 
     public static void demitirProfessor(Professor professor) {
-
+        professores.remove(professor);
     }
 
     public static void demitirProfessor(int ID) {
