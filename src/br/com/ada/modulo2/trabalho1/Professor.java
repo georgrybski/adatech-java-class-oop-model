@@ -25,4 +25,15 @@ public class Professor {
         professores.add(new Professor(nome));
     }
 
+    public static void demitirProfessor(Professor professor) {
+
+    }
+
+    public static void demitirProfessor(int ID) {
+        demitirProfessor(Professor.ID(ID));
+    }
+
+    public static Professor ID(int ID) {
+        return professores.get(ID-1);
+    }
 }
