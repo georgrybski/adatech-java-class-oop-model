@@ -26,6 +26,14 @@ public class Input {
         return receberString(prompt, false);
     }
 
+    public static String receberData(String prompt) {
+        String data =  receberString(prompt, true);
+        if (Tempo.dataValida(data)) {
+            return data;
+        }
+        return receberString(prompt, false);
+    }
+
     /**
      * Imprime um prompt e recebe um valor int do usuario,
      * passa também uma mensagem a ser utilizada caso input não seja valido
