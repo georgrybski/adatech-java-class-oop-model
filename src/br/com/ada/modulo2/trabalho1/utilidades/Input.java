@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Classe que lida com todas as entradas pelo usuario.
+ * Classe que lida com todas as entradas pelo usuário.
  */
 public class Input {
 
@@ -25,11 +25,22 @@ public class Input {
         }
         return receberString(prompt, false);
     }
-
+    /**
+     * Sobrecarga que sinaliza para receberData que é a primeira tentativa de receber input
+     * Recebe e valida uma String de data no formato dd/mm/aaaa
+     * @param prompt: Mensagem que será impressa, instruindo o usuário quanto ao formato do input aceito
+     * @return String
+     */
     public static String receberData(String prompt) {
         return receberData(prompt, true);
     }
 
+    /**
+     * Recebe e valida uma String de data no formato dd/mm/aaaa
+     * Método que chama inputTipo passando o argumento "String"
+     * Checa se o valor retornado é valido, caso seja, o retorna, caso não, faz chamada recursiva do prórprio método
+     * @return String
+     */
     private static String receberData(String prompt, boolean primeiraTentativa) {
         String data =  receberString(prompt, primeiraTentativa);
         if (Tempo.dataValida(data)) {
@@ -39,10 +50,10 @@ public class Input {
     }
 
     /**
-     * Imprime um prompt e recebe um valor int do usuario,
+     * Imprime um prompt e recebe um valor int do usuário,
      * passa também uma mensagem a ser utilizada caso input não seja valido
      * Sobrecarga do método receberInt.
-     * @param prompt: String a ser impressa apenas uma vez (durante ínicio) passando as instruções ao usuario
+     * @param prompt: String a ser impressa apenas uma vez (durante ínicio) passando as instruções ao usuário
      * @param msgValorInvalido: String a ser impressa caso o valor nõo seja válido
      * @param min: valor mínimo aceito.
      * @param max: valor máximo aceito.
@@ -108,7 +119,6 @@ public class Input {
      * @param msgValorInvalido: String a ser impressa caso o valor nõo seja válido
      * @return int
      */
-
     public static Double receberDouble(double min, double max, String prompt, String msgValorInvalido) {
         return receberDouble(min, max, prompt, msgValorInvalido, true);
     }
