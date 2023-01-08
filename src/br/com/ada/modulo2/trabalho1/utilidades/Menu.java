@@ -12,7 +12,7 @@ public class Menu {
      * @param opcoes: Array de String, com cada String representando uma opção para o menu
      *              (Ex: {"1- Opção 1", "2- Opção 2", "3- Opção 3"}
      *              Serão aceitos valores de 1 até opcoes.length().
-     * @return
+     * @return int
      */
     public static int receberInt(String[] opcoes) {
         String prompt = "Insira um valor entre " + 1 + " e " + opcoes.length;
