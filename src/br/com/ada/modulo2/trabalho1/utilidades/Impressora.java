@@ -33,7 +33,7 @@ public class Impressora {
      * Recebe um array de Strings, onde cada String representa uma opção.
      * As opções são colocadas dentro de "caixas" e estas, são colocadas juntas em uma "caixa" maior.
      */
-    public static void imprimirMenuComOpcoes(String[] opcoes) {
+    protected static void imprimirMenuComOpcoes(String[] opcoes) {
 
         String[][] matrizDeOpcoes = retornarMatrizDeComponentesParaMenu(opcoes);
         imprimirLinhaDelimitadora();

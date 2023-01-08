@@ -9,33 +9,59 @@ public class Input {
 
     private Input() {}
 
-    // TODO: Avaliar necessidade de adicionar chamadas do Impressora dentro dos
-    //  métodos (Imprimir os prompts e ou menus relacioados ao input pedido.
+    public static String receberString(String prompt) {
+        return receberString(prompt, true);
+    }
 
     /**
      * Método que chama inputTipo passando o argumento "String".
      * Checa se o valor retornado é valido, caso seja, o retorna, caso não, faz chamada recursiva do prórprio método.
      * @return String
      */
-    public static String receberString() {
-        String string = (String) inputTipo("String");
-        if (string != null) {
+    private static String receberString(String prompt, boolean primeiraTentativa) {
+        String string = (String) inputTipo("String", "Entrada inváida, " + prompt, prompt, primeiraTentativa );
+        if (string != null && !string.isEmpty() && !string.isBlank()) {
             return string;
         }
-        return receberString();
+        return receberString(prompt, false);
     }
 
     /**
-     * Método que chama inputTipo passando o argumento "int".
-     * Checa se o valor retornado é valido, caso seja, o retorna, caso não, faz chamada recursiva do prórprio método.
+     * Imprime um prompt e recebe um valor int do usuario,
+     * passa também uma mensagem a ser utilizada caso input não seja valido
+     * Sobrecarga do método receberInt.
+     * @param prompt: String a ser impressa apenas uma vez (durante ínicio) passando as instruções ao usuario
+     * @param msgValorInvalido: String a ser impressa caso o valor nõo seja válido
+     * @param min: valor mínimo aceito.
+     * @param max: valor máximo aceito.
      * @return int
      */
-    public static int receberInt() {
-        Integer input = (Integer) inputTipo("int");
+    protected static int receberIntEmMenu(String[] opcoes, int min, int max, String prompt,
+                                        String msgValorInvalido, boolean primeiraTentativa) {
+
+        Impressora.imprimirMenuComOpcoes(opcoes);
+        Integer input = (Integer) inputTipo("int", msgValorInvalido, prompt, primeiraTentativa);
         if (input != null) {
-            return input;
+            if (input >= min && input <= max) {
+                return input;
+            }
         }
-        return receberInt();
+        return receberIntEmMenu(opcoes, min, max, prompt, msgValorInvalido, false);
+    }
+
+    /**
+     * Retorna um int, imprimindo instruções quanto ao intervalo de valores aceitos
+     * e imprimindo uma mensagem caso o valor recebido esteja fora dos parâmetros
+     * Sobrecarga do método receberInt.
+     * chama receberInt passando verdadeiro para o argumento primeiraTentativa
+     * @param min: valor mínimo aceito.
+     * @param max: valor máximo aceito.
+     * @param prompt: String da mensagem que deve ser impressa na primeira chamada do método inputTipo
+     * @param msgValorInvalido: String a ser impressa caso o valor nõo seja válido
+     * @return int
+     */
+    public static int receberInt(int min, int max, String prompt, String msgValorInvalido) {
+        return receberInt(min, max, prompt, msgValorInvalido, true);
     }
 
     /**
@@ -44,27 +70,35 @@ public class Input {
      * caso não, faz chamada recursiva do prórprio método.
      * @param min: valor mínimo aceito.
      * @param max: valor máximo aceito.
+     * @param prompt: String da mensagem que deve ser impressa na primeira chamada do método inputTipo
+     * @param msgValorInvalido: String a ser impressa caso o valor nõo seja válido
+     * @param primeiraTentativa: verdadeiro caso seja a primeira vez que o método é chamado dentro de sua sobrecarga
      * @return int
      */
-    public static int receberInt(int min, int max) {
-        int input = receberInt();
-        if (input >= min && input <= max) {
-            return input;
+    private static int receberInt(int min, int max, String prompt, String msgValorInvalido, boolean primeiraTentativa) {
+        Integer input = (Integer) inputTipo("int", msgValorInvalido, prompt, primeiraTentativa);
+        if (input != null) {
+            if (input >= min && input <= max) {
+                return input;
+            }
         }
-        return receberInt(min, max);
+        return receberInt(min, max, prompt, msgValorInvalido, false);
     }
 
     /**
-     * Método que chama inputTipo passando o argumento "double".
-     * Checa se o valor retornado é valido, caso seja, o retorna, caso não, faz chamada recursiva do prórprio método.
-     * @return double
+     * Retorna um double, imprimindo instruções quanto ao intervalo de valores aceitos
+     * e imprimindo uma mensagem caso o valor recebido esteja fora dos parâmetros
+     * Sobrecarga do método receberInt.
+     * chama receberDouble passando verdadeiro para o argumento primeiraTentativa
+     * @param min: valor mínimo aceito.
+     * @param max: valor máximo aceito.
+     * @param prompt: String da mensagem que deve ser impressa na primeira chamada do método inputTipo
+     * @param msgValorInvalido: String a ser impressa caso o valor nõo seja válido
+     * @return int
      */
-    public static double receberDouble() {
-        Double input = (Double) inputTipo("double");
-        if (input != null) {
-            return input;
-        }
-        return receberDouble();
+
+    public static Double receberDouble(double min, double max, String prompt, String msgValorInvalido) {
+        return receberDouble(min, max, prompt, msgValorInvalido, true);
     }
 
     /**
@@ -75,12 +109,14 @@ public class Input {
      * @param max: valor máximo aceito.
      * @return double
      */
-    public static double receberDouble(double min, double max) {
-        double input = receberDouble();
-        if (input >= min && input <= max) {
-            return input;
+    private static double receberDouble(double min, double max, String prompt, String msgValorInvalido, boolean primeiraTentativa) {
+        Double input = (Double) inputTipo("double", msgValorInvalido, prompt, primeiraTentativa);
+        if (input != null) {
+            if (input >= min && input <= max) {
+                return input;
+            }
         }
-        return receberDouble(min, max);
+        return receberDouble(min, max, prompt, msgValorInvalido, false);
     }
 
     /**
@@ -89,9 +125,16 @@ public class Input {
      * @param tipo (String)
      * @return Object
      */
-    private static Object inputTipo(String tipo) {
+    private static Object inputTipo(String tipo, String msgValorInvalido, String prompt, boolean primeiraTentativa) {
         Scanner scn = new Scanner(System.in);
-        Object input;
+        String mensagem;
+        if (!primeiraTentativa) {
+            mensagem = msgValorInvalido;
+        }
+        else {
+            mensagem = prompt;
+        }
+        Impressora.imprimirMensagemFormatada(mensagem);
         try {
             switch(tipo) {
                 case ("String"):
