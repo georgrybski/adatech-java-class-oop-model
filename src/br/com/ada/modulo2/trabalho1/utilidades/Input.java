@@ -1,4 +1,4 @@
-package br.com.ada.modulo2.trabalho1.input;
+package br.com.ada.modulo2.trabalho1.utilidades;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

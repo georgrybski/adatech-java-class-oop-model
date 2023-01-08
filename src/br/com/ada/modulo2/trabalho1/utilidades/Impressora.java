@@ -1,4 +1,4 @@
-package br.com.ada.modulo2.trabalho1.impressora;
+package br.com.ada.modulo2.trabalho1.utilidades;
 
 /**
  * Classe que lida com a impressão de menus e prompts para o usuario.
