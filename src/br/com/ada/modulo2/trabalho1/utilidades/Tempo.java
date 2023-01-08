@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Classe que lida com a manipulação de datas
@@ -17,10 +18,10 @@ public class Tempo {
      * @return boolean
       */
     public static boolean dataValida(String data) {
+        var formatador =
+                DateTimeFormatter.ofPattern("dd/MM/yyyy").withResolverStyle(ResolverStyle.STRICT);
         try{
-            var formatador =
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate.parse(data , formatador);
+            LocalDate.parse(data, formatador);
             return true;
         } catch (DateTimeParseException e) {
             return false;

@@ -27,11 +27,15 @@ public class Input {
     }
 
     public static String receberData(String prompt) {
-        String data =  receberString(prompt, true);
+        return receberData(prompt, true);
+    }
+
+    private static String receberData(String prompt, boolean primeiraTentativa) {
+        String data =  receberString(prompt, primeiraTentativa);
         if (Tempo.dataValida(data)) {
             return data;
         }
-        return receberString(prompt, false);
+        return receberData(prompt, false);
     }
 
     /**
