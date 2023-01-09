@@ -1,5 +1,7 @@
 package br.com.ada.modulo2.trabalho1;
 
+import br.com.ada.modulo2.trabalho1.utilidades.Impressora;
+
 import java.util.ArrayList;
 
 public class Professor {
@@ -16,19 +18,18 @@ public class Professor {
         this.ID = contadorDeID++;
     }
 
+    // TODO
+    //public double calcularMediaGlobal(Aluno aluno) {
+    //}
+
     //    TODO
-//public static double calcularMediaGlobal(Aluno aluno) {
-//        double media = 0;
-//        int numDeNotas = 0;
-//
-//        for (int i = 0; i < aluno.getDisciplinas().size(); i++) {
-//            for (int j = 0; j < aluno.getDisciplinas().size(); j++) {
-//                for (int k = 0; k < aluno.getDisciplinas().get(j) ; k++) {
-//
-//                }
-//            }
-//    }
-//}
+    //    public void aplicarProva(Turma turma) {
+    //    }
+
+    public void darAula(Turma turma) {
+        String mensagem = this.nome + " está dando aula para a turma " + turma.getNome();
+        Impressora.imprimirMensagemFormatada(mensagem);
+    }
 
     public static void contratarProfessor(String nome) {
         professores.add(new Professor(nome));
@@ -64,10 +65,7 @@ public class Professor {
 
     @Override
     public String toString() {
-        return "Professor{" +
-                "nome='" + nome + '\'' +
-                ", ID=" + ID +
-                '}';
+        return "Professor ID " + ID + " | " + nome;
     }
 }
 

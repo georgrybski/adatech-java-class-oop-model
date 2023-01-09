@@ -4,14 +4,15 @@ import java.util.ArrayList;
 
 public class Aluno {
     private String nome;
-    private String matricula;
+    private int matricula;
     private ArrayList<DisciplinaCursada> disciplinas = new ArrayList<>();
-    private static int contadorDeID = 1;
-    static ArrayList <Aluno> alunos = new ArrayList<>();
+    private static ArrayList <Aluno> alunos = new ArrayList<>();
 
-    public Aluno(String nome, String matricula){
+    private static int contadorDeAlunos;
+
+    public Aluno(String nome){
         this.nome = nome;
-        this.matricula = matricula;
+        this.matricula = contadorDeAlunos++;
 
     }
 

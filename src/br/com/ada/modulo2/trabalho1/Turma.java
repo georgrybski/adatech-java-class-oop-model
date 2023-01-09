@@ -1,5 +1,7 @@
 package br.com.ada.modulo2.trabalho1;
 
+import br.com.ada.modulo2.trabalho1.utilidades.Input;
+
 import java.util.ArrayList;
 
 public class Turma {

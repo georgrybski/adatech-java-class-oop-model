@@ -6,8 +6,8 @@ public class Coordenacao {
 
     private Coordenacao() {}
 
-    public static void matricularAluno(String nome, String matricula) {
-        Aluno.getAlunos().add(new Aluno(nome, matricula));
+    public static void matricularAluno(String nome) {
+        Aluno.getAlunos().add(new Aluno(nome));
     }
 
     public static void listarAlunos() {

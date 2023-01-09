@@ -7,6 +7,18 @@ package br.com.ada.modulo2.trabalho1.utilidades;
  */
 public class Menu {
 
+
+    private static final String[] OPCOES1 =
+            {"1 - Cadastrar Professor", "2 - Cadastrar Aluno",
+            "3 - Lista de Professores", "4 - Lista de Alunos",
+            "5 - Criar Turma", "6 - Lista de Turmas", "7 - Sair"};
+
+    private Menu() {}
+
+    public static int menuInicial() {
+        return receberInt(OPCOES1);
+    }
+
     /**
      * Imprime um menu e retorna valor inserido pelo usuário.
      * @param opcoes: Array de String, com cada String representando uma opção para o menu
@@ -18,7 +30,6 @@ public class Menu {
         String prompt = "Insira um valor entre " + 1 + " e " + opcoes.length;
         String msgValorInvalido = "Valor inválido! " + prompt;
         return  Input.receberIntEmMenu(opcoes, 1, opcoes.length, prompt,
-                                       msgValorInvalido, true);
+                msgValorInvalido, true);
     }
-
 }
