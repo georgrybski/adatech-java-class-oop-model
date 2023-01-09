@@ -36,6 +36,26 @@ public class DisciplinaCursada {
         return disciplinaEmCurso;
     }
 
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
 
+    public ArrayList<Double> getNotas() {
+        return notas;
+    }
 
+    public String getStrDataInicial() {
+        return strDataInicial;
+    }
+
+    public String getStrDataFinal() {
+        return strDataFinal;
+    }
+
+    @Override
+    public String toString() {
+        return disciplina.getNome() +
+                "| Data de início: " + strDataInicial + '\'' +
+                "| Data de término: " + strDataFinal;
+    }
 }

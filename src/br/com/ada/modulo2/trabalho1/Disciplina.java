@@ -21,9 +21,15 @@ public class Disciplina {
         disciplina.professores.add(professor);
     }
 
+    public String getNome() {
+        return nome;
+    }
 
+    public ArrayList<Professor> getProfessores() {
+        return professores;
+    }
 
-
-
-
+    public static ArrayList<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
 }
