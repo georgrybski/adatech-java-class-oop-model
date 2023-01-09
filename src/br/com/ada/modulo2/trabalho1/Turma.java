@@ -6,19 +6,25 @@ import java.util.ArrayList;
 
 public class Turma {
     private String nome;
-    private ArrayList<Aluno> alunos;
-    private static ArrayList<Turma> turmas = new ArrayList<>();
-
     private Professor professor;
+    private int ID;
+    private ArrayList<Aluno> alunos = new ArrayList<>();
+    private static ArrayList<Turma> turmas = new ArrayList<>();
+    private static int contadorDeTurmas = 1;
+
 
     public Turma(String nome, Professor professor) {
         this.nome = nome;
         this.professor = professor;
-        alunos = new ArrayList<>();
+        ID = contadorDeTurmas;
     }
 
     public String getNome() {
         return nome;
+    }
+
+    public static Turma ID(int id) {
+        return turmas.get(id-1);
     }
 
     public ArrayList<Aluno> getAlunos() {
@@ -37,9 +43,13 @@ public class Turma {
         this.professor = professor;
     }
 
+    public static int getContadorDeTurmas() {
+        return contadorDeTurmas;
+    }
+
     @Override
     public String toString() {
-        return "Turma " + nome + " | Professor: " + professor.getNome() + " |  Número de alunos: " + alunos.size();
+        return "Turma " + nome + " | ID " + ID  + " | Professor: " + professor.getNome() + " |  Número de alunos: " + alunos.size();
     }
 
 

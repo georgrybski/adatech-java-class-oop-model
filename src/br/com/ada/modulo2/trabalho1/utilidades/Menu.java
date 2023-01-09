@@ -11,7 +11,7 @@ public class Menu {
     private static final String[] OPCOES1 =
             {"1 - Cadastrar Professor", "2 - Cadastrar Aluno",
             "3 - Lista de Professores", "4 - Lista de Alunos",
-            "5 - Criar Turma", "6 - Lista de Turmas", "7 - Sair"};
+            "5 - Criar Turma", "6 - Lista de Turmas", "7 - Começar Aula" , "8 - Sair"};
 
     private Menu() {}
 

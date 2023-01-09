@@ -31,17 +31,8 @@ public class Professor {
         Impressora.imprimirMensagemFormatada(mensagem);
     }
 
-    public static void contratarProfessor(String nome) {
-        professores.add(new Professor(nome));
-    }
 
-    public static void demitirProfessor(Professor professor) {
-        professores.remove(professor);
-    }
 
-    public static void demitirProfessor(int ID) {
-        demitirProfessor(Professor.ID(ID-1));
-    }
 
     public static Professor ID(int ID) {
         return professores.get(ID-1);

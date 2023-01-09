@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Aluno {
     private String nome;
-    private int matricula;
+    private int ID;
     private ArrayList<DisciplinaCursada> disciplinas = new ArrayList<>();
     private static ArrayList <Aluno> alunos = new ArrayList<>();
 
@@ -12,7 +12,7 @@ public class Aluno {
 
     public Aluno(String nome){
         this.nome = nome;
-        this.matricula = contadorDeAlunos++;
+        this.ID = contadorDeAlunos++;
 
     }
 
@@ -26,9 +26,6 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Aluno{" +
-                "nome='" + nome + '\'' +
-                ", matricula='" + matricula + '\'' +
-                '}';
+        return "Aluno ID: " + ID + " | " + nome;
     }
 }
