@@ -1,6 +1,11 @@
 package br.com.ada.modulo2.trabalho1.utilidades;
 
 
+import br.com.ada.modulo2.trabalho1.Professor;
+
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 /**
  * Classe que lida com chamadas de métodos
  * relacionadas a menus destinados ao usuario.
@@ -11,7 +16,18 @@ public class Menu {
     private static final String[] OPCOES1 =
             {"1 - Cadastrar Professor", "2 - Cadastrar Aluno",
             "3 - Lista de Professores", "4 - Lista de Alunos",
-            "5 - Criar Turma", "6 - Lista de Turmas", "7 - Começar Aula" , "8 - Sair"};
+            "5 - Criar Turma", "6 - Lista de Turmas", "7 - Começar Aula" ,"8 - Imprimir Professor" , "9 - Sair"};
+
+
+    private static String[] opcoesDeMenuDinamico(ArrayList<Professor> professores) {
+        return professores.stream().map(Professor::toString).collect(Collectors.toList()).toArray(String[]::new);
+    }
+    }
+
+    public static Professor professores(){
+        return Professor.ID(receberInt(opcoesDeMenuDinamico(Professor.getProfessores())));
+    }
+
 
     private Menu() {}
 

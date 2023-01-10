@@ -16,7 +16,7 @@ public class Turma {
     public Turma(String nome, Professor professor) {
         this.nome = nome;
         this.professor = professor;
-        ID = contadorDeTurmas;
+        ID = contadorDeTurmas++;
     }
 
     public String getNome() {
@@ -49,7 +49,9 @@ public class Turma {
 
     @Override
     public String toString() {
-        return "Turma " + nome + " | ID " + ID  + " | Professor: " + professor.getNome() + " |  Número de alunos: " + alunos.size();
+        return "Turma " + nome + " | ID " + ID  +
+                " | Professor: " + professor.getNome() +
+                " |  Número de alunos: " + alunos.size();
     }
 
 

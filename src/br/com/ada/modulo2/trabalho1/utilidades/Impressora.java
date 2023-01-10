@@ -90,7 +90,7 @@ public class Impressora {
                 // Multiplos destes números teriam duplicidade da última opção em linha que não deveria existir.
                 boolean naoMultiploDe10ou14ou16 = (matrizDeOpcoes.length % 10 != 0 &&
                                                    matrizDeOpcoes.length % 14 != 0 &&
-                                                   matrizDeOpcoes.length % 16 != 0);
+                                                   matrizDeOpcoes.length % 8 != 0);
 
                 boolean maisUmaLinhaDeOpcoesNecessaria = (ultimaIteracao && maisDeDuasOpcoes && numeroParDeIteracoes &&
                                     numberoDeOpcoesAdicionaisDiferenteDeNumeroDeIteracoes &&

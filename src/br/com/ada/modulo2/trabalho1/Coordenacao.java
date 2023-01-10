@@ -2,6 +2,8 @@ package br.com.ada.modulo2.trabalho1;
 
 import br.com.ada.modulo2.trabalho1.utilidades.Impressora;
 
+import java.util.ArrayList;
+
 public class Coordenacao {
 
     private Coordenacao() {}
@@ -37,7 +39,6 @@ public class Coordenacao {
         }
         Impressora.imprimirMensagemFormatada("^ Lista de Turmas ^");
     }
-
 }
 
 

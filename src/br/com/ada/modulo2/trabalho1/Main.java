@@ -44,23 +44,38 @@ public class Main {
                     break;
 
                 case 7:
-                    Coordenacao.listarProfessores();
-                    Coordenacao.listarTurmas();
-                    Coordenacao.listarProfessores();
-                    Impressora.imprimirMensagemFormatada("^ Lista de Turmas e Professores acima ^");
-                    Professor.ID(
-                            Input.receberInt(1, Professor.getContadorDeID(),
-                                    "Insira o ID do(a) professor(a)",
-                                    ("Valor inválido, insira um ID entre + " +
-                                            1 + " e " + Professor.getContadorDeID())
-                            )
-                    ).darAula(Turma.ID(Input.receberInt(1, Turma.getContadorDeTurmas(),
+//                    Coordenacao.listarProfessores();
+//                    Coordenacao.listarTurmas();
+//                    Coordenacao.listarProfessores();
+//                    Impressora.imprimirMensagemFormatada("^ Lista de Turmas e Professores acima ^");
+//                    Professor.ID(
+//                            Input.receberInt(1, Professor.getContadorDeID(),
+//                                    "Insira o ID do(a) professor(a)",
+//                                    ("Valor inválido, insira um ID entre + " +
+//                                            1 + " e " + Professor.getContadorDeID())
+//                            )
+//                    ).darAula(Turma.ID(Input.receberInt(1, Turma.getContadorDeTurmas(),
+//                            "Insira o ID da turma",
+//                            ("Valor inválido, insira um ID entre + " +
+//                                    1 + " e " + Turma.getContadorDeTurmas()))));
+//                            "Insira o ID da turma",
+//                            ("Valor inválido, insira um ID entre + " +
+//                                    1 + " e " + Turma.getContadorDeTurmas());
+                    Menu.professores().darAula(Turma.ID(Input.receberInt(1, Turma.getContadorDeTurmas(),
                             "Insira o ID da turma",
                             ("Valor inválido, insira um ID entre + " +
                                     1 + " e " + Turma.getContadorDeTurmas()))));
                     break;
 
                 case 8:
+                    if(Professor.getProfessores().isEmpty()) {
+                        Impressora.imprimirMensagemFormatada("Cadastre um professor antes de tentar criar uma turma");
+                    } else {
+                        System.out.println(Menu.professores().toString());
+                    }
+                    break;
+
+                case 9:
                     rodando = false;
                     Impressora.imprimirMensagemFormatada("Encerrando serviço");
 
