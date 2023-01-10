@@ -11,52 +11,42 @@ public class Main {
         while (rodando){
             switch (Menu.menuInicial()) {
 
-                // Cadastrar Professor
+                // CADASTRAR PROFESSOR
                 case 1:
                     Coordenacao.contratarProfessor(Input.receberString("Insira o nome do(a) Professor(a)"));
                     break;
 
-                // Cadastrar Aluno
+                // CADASTRAR ALUNO
                 case 2:
                     Coordenacao.matricularAluno(Input.receberString("Insira o nome do(a) aluno(a)"));
                     break;
 
-                // Cadastrar Turma
+                // CADASTRAR TURMA
                 case 3:
                     if(Professor.getProfessores().isEmpty()) {
-                        Impressora.imprimirMensagemFormatada("Cadastre um professor antes de tentar criar uma turma");
-                    } else {
-                        Coordenacao.criarTurma(
-                                Input.receberString("Insira o nome da turma"),
-                                Professor.ID(
-                                        Input.receberInt(1, Professor.getContadorDeID(),
-                                                "Insira o ID do(a) professor(a)",
-                                                ("Valor inválido, insira um ID entre + " +
-                                                        1 + " e " + Professor.getContadorDeID())
-                                        )
-                                )
-                        );
+                        Coordenacao.contratarProfessor(Input.receberString("Insira o nome do(a) Professor(a)"));
                     }
+                    Coordenacao.criarTurma(
+                            Input.receberString("Insira o nome da turma"),
+                            Menu.menuDeProfessores());
+                    break;
 
-                // Listar Professores
+                // LISTAR PROFESSORES
                 case 4:
                     Coordenacao.listarProfessores();
                     break;
 
-                //TODO Listar alunos por turma
-                //     Adicionar Aluno à Turma
-
-                // Listar Alunos
+                // LISTAR ALUNOS
                 case 5:
                     Coordenacao.listarAlunos();
                     break;
 
-                // Listar Turmas
+                // LISTAR TURMAS
                 case 6:
                     Coordenacao.listarTurmas();
                     break;
 
-                // Iniciar Aula
+                // INICIAR AULA
                 case 7:
                     if(Professor.getProfessores().isEmpty()) {
                         Impressora.imprimirMensagemFormatada("Cadastre um professor antes de tentar começar uma aula");
@@ -65,8 +55,16 @@ public class Main {
                     }
                     break;
 
-                // Sair
+                // ADICIONAR ALUNO A UMA TURMA
                 case 8:
+                    if(Aluno.getAlunos().isEmpty()) {
+                        Coordenacao.matricularAluno(Input.receberString("Insira o nome do(a) aluno(a)"));
+                    }
+                    Menu.AdicionarAlunoATurma();
+                    break;
+
+                // SAIR
+                case 9:
                     rodando = false;
                     Impressora.imprimirMensagemFormatada("Encerrando serviço");
 

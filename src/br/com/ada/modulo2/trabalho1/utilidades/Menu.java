@@ -17,13 +17,19 @@ public class Menu {
     private static final String[] OPCOES1 =
             {"1 - Cadastrar Professor", "2 - Cadastrar Aluno",
             "3 - Cadastrar Turma", "4 - Lista de Professores",
-            "5 - Lista de Alunos", "6 - Lista de Turmas", "7 - Iniciar Aula" ,"8 - Sair"};
+            "5 - Lista de Alunos", "6 - Lista de Turmas", "7 - Iniciar Aula", "8 - Inserir Aluno em Turma" ,"9 - Sair"};
+
 
     private Menu() {}
 
+
+    /**
+     * Método que imprime o menu e fornece o input ao switch do método main
+     */
     public static int menuInicial() {
         return receberInt(OPCOES1);
     }
+
 
     /**
      * Converte o ArrayList de professores em um String[] que será usado para fazer um menu
@@ -33,6 +39,7 @@ public class Menu {
     private static String[] opcoesDeProfessores(ArrayList<Professor> professores) {
         return professores.stream().map(Professor::toString).toList().toArray(String[]::new);
     }
+
 
     /**
      * Cria um menu apresentando todos professores e seus IDs
@@ -44,6 +51,7 @@ public class Menu {
         return Professor.ID(receberInt(opcoesDeProfessores(Professor.getProfessores())));
     }
 
+
     /**
      * Converte o ArrayList de turmas em um String[] que será usado para fazer um menu
      * @param turmas: ArrayList contendo todos professores
@@ -53,9 +61,15 @@ public class Menu {
         return turmas.stream().map(turma -> turma.getID() + " | Turma " + turma.getNome() ).toList().toArray(String[]::new);
     }
 
+
+    /**
+     * Converte o ArrayList de todos alunos em um String[] que será usado para fazer um menu
+     * @return Array de String contendo o nome e ID de cada aluno
+     */
     private static String[] opcoesDeAlunos() {
         return Aluno.getAlunos().stream().map(aluno -> aluno.getID() + " |  " + aluno.getNome() ).toList().toArray(String[]::new);
     }
+
 
     /**
      * Cria um menu apresentando todas turmas e seus IDs
@@ -66,9 +80,16 @@ public class Menu {
         return Turma.ID(receberInt(opcoesDeTurmas(turmas)));
     }
 
+
+    /**
+     * Cria um menu apresentando todos alunos e seus IDs
+     * recebe do usuário o input numérico e converte ele no respetivo aluno
+     * @return: Aluno selecionado pelo usuário
+     */
     public static Aluno menuDeAunos(){
         return Aluno.ID(receberInt(opcoesDeAlunos()));
     }
+
 
     /**
      * Cria menus e permite que o usuário selecione um professor e uma turma para representar uma aula
@@ -86,10 +107,14 @@ public class Menu {
         }
     }
 
+
     public static void AdicionarAlunoATurma(){
+        Impressora.imprimirMensagemFormatada("Selecione o(a) aluno(a) abaixo:");
         var aluno = menuDeAunos();
         Coordenacao.adicionarAlunoATurma(aluno,menuDeTurmas(Turma.getTurmas()));
     }
+
+
     /**
      * Imprime um menu e retorna valor inserido pelo usuário.
      * @param opcoes: Array de String, com cada String representando uma opção para o menu
@@ -103,4 +128,5 @@ public class Menu {
         return  Input.receberIntEmMenu(opcoes, 1, opcoes.length, prompt,
                 msgValorInvalido, true);
     }
+
 }

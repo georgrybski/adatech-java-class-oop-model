@@ -8,7 +8,7 @@ public class Aluno {
     private ArrayList<DisciplinaCursada> disciplinas = new ArrayList<>();
     private static ArrayList <Aluno> alunos = new ArrayList<>();
 
-    private static int contadorDeAlunos;
+    private static int contadorDeAlunos = 1;
 
     public Aluno(String nome){
         this.nome = nome;
@@ -25,14 +25,14 @@ public class Aluno {
     }
 
     public static Aluno ID(int ID){
-        return alunos.get(ID);
+        return alunos.get(ID-1);
     }
     public String getNome() {
         return nome;
     }
 
-    public String getID() {
-        return getID();
+    public int getID() {
+        return ID;
     }
 
     @Override

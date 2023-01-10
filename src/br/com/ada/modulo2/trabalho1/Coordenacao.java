@@ -1,8 +1,10 @@
 package br.com.ada.modulo2.trabalho1;
 
 import br.com.ada.modulo2.trabalho1.utilidades.Impressora;
+import br.com.ada.modulo2.trabalho1.utilidades.Menu;
 
 import java.util.ArrayList;
+import java.util.spi.AbstractResourceBundleProvider;
 
 public class Coordenacao {
 
@@ -13,7 +15,22 @@ public class Coordenacao {
     }
 
     public static void listarAlunos() {
-        for (Aluno alunos : Aluno.getAlunos()) {
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        switch (Menu.receberInt(new String[]{"1 - Todos Alunos", "2 - Alunos em uma turma específica"})) {
+            case 1:
+                alunos = Aluno.getAlunos();
+                break;
+            case 2:
+                var turma = Menu.menuDeTurmas(Turma.getTurmas());
+                alunos = turma.getAlunos();
+                break;
+
+        }
+        if (alunos.isEmpty()) {
+            Impressora.imprimirMensagemFormatada("Não exitem alunos cadastrados nesta turma");
+            return;
+        }
+        for (Aluno aluno : alunos) {
             Impressora.imprimirMensagemFormatada(alunos.toString());
         }
     }
