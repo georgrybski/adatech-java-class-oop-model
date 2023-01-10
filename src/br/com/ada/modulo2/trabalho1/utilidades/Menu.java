@@ -23,23 +23,47 @@ public class Menu {
         return receberInt(OPCOES1);
     }
 
+    /**
+     * Converte o ArrayList de professores em um String[] que será usado para fazer um menu
+     * @param professores: ArrayList contendo todos professores
+     * @return Array de String contendo o nome e ID de cada professor
+     */
     private static String[] opcoesDeProfessores(ArrayList<Professor> professores) {
         return professores.stream().map(Professor::toString).toList().toArray(String[]::new);
     }
 
+    /**
+     * Cria um menu apresentando todos professores e seus IDs
+     * recebe do usuário o input numérico e converte ele no respectivo professor
+     * @return: Professor selecionado pelo usuário
+     */
     public static Professor menuDeProfessores(){
     Impressora.imprimirMensagemFormatada("");
         return Professor.ID(receberInt(opcoesDeProfessores(Professor.getProfessores())));
     }
 
+    /**
+     * Converte o ArrayList de turmas em um String[] que será usado para fazer um menu
+     * @param turmas: ArrayList contendo todos professores
+     * @return Array de String contendo o nome e ID de cada turma
+     */
     private static String[] opcoesDeTurmas(ArrayList<Turma> turmas) {
         return turmas.stream().map(turma -> turma.getID() + " | Turma " + turma.getNome() ).toList().toArray(String[]::new);
     }
 
+    /**
+     * Cria um menu apresentando todas turmas e seus IDs
+     * recebe do usuário o input numérico e converte ele na respectiva turma
+     * @return: Turma selecionada pelo usuário
+     */
     public static Turma menuDeTurmas(ArrayList<Turma> turmas) {
         return Turma.ID(receberInt(opcoesDeTurmas(turmas)));
     }
 
+    /**
+     * Cria menus e permite que o usuário selecione um professor e uma turma para representar uma aula
+     * Imprime uma mensagem informando que a aula foi iniciada
+     */
     public static void iniciarAula() {
         Impressora.imprimirMensagemFormatada("Selecione um(a) professor(a) abaixo:");
         var professor = menuDeProfessores();
@@ -51,7 +75,6 @@ public class Menu {
             Impressora.imprimirMensagemFormatada(professor.getNome() + " não está alocado a nenhuma turma");
         }
     }
-
 
     /**
      * Imprime um menu e retorna valor inserido pelo usuário.

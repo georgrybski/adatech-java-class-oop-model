@@ -43,6 +43,9 @@ public class Main {
                     Coordenacao.listarProfessores();
                     break;
 
+                //TODO Listar alunos por turma
+                //     Adicionar Aluno à Turma
+
                 // Listar Alunos
                 case 5:
                     Coordenacao.listarAlunos();
