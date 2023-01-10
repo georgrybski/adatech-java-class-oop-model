@@ -1,5 +1,7 @@
 package br.com.ada.modulo2.trabalho1.utilidades;
 
+import br.com.ada.modulo2.trabalho1.Aluno;
+import br.com.ada.modulo2.trabalho1.Coordenacao;
 import br.com.ada.modulo2.trabalho1.Professor;
 import br.com.ada.modulo2.trabalho1.Turma;
 
@@ -51,6 +53,10 @@ public class Menu {
         return turmas.stream().map(turma -> turma.getID() + " | Turma " + turma.getNome() ).toList().toArray(String[]::new);
     }
 
+    private static String[] opcoesDeAlunos() {
+        return Aluno.getAlunos().stream().map(aluno -> aluno.getID() + " |  " + aluno.getNome() ).toList().toArray(String[]::new);
+    }
+
     /**
      * Cria um menu apresentando todas turmas e seus IDs
      * recebe do usuário o input numérico e converte ele na respectiva turma
@@ -58,6 +64,10 @@ public class Menu {
      */
     public static Turma menuDeTurmas(ArrayList<Turma> turmas) {
         return Turma.ID(receberInt(opcoesDeTurmas(turmas)));
+    }
+
+    public static Aluno menuDeAunos(){
+        return Aluno.ID(receberInt(opcoesDeAlunos()));
     }
 
     /**
@@ -76,6 +86,10 @@ public class Menu {
         }
     }
 
+    public static void AdicionarAlunoATurma(){
+        var aluno = menuDeAunos();
+        Coordenacao.adicionarAlunoATurma(aluno,menuDeTurmas(Turma.getTurmas()));
+    }
     /**
      * Imprime um menu e retorna valor inserido pelo usuário.
      * @param opcoes: Array de String, com cada String representando uma opção para o menu

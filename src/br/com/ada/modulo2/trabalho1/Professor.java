@@ -19,21 +19,18 @@ public class Professor {
         this.ID = contadorDeID++;
     }
 
-    // TODO
-    //public double calcularMediaGlobal(Aluno aluno) {
-    //}
+    //TODO
+    // public double calcularMediaGlobal(Aluno aluno) {
+    // }
 
-    //    TODO
-    //    public void aplicarProva(Turma turma) {
-    //    }
+    //TODO
+    // public void aplicarProva(Turma turma) {
+    // }
 
     public void darAula(Turma turma) {
         String mensagem = this.nome + " está dando aula para a turma " + turma.getNome();
         Impressora.imprimirMensagemFormatada(mensagem);
     }
-
-
-
 
     public static Professor ID(int ID) {
         return professores.get(ID-1);

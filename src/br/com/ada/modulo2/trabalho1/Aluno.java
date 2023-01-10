@@ -24,6 +24,17 @@ public class Aluno {
         return disciplinas;
     }
 
+    public static Aluno ID(int ID){
+        return alunos.get(ID);
+    }
+    public String getNome() {
+        return nome;
+    }
+
+    public String getID() {
+        return getID();
+    }
+
     @Override
     public String toString() {
         return "Aluno ID: " + ID + " | " + nome;

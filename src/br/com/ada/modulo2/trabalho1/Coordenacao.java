@@ -41,6 +41,14 @@ public class Coordenacao {
         }
         Impressora.imprimirMensagemFormatada("^ Lista de Turmas ^");
     }
+
+    public static void adicionarAlunoATurma(Aluno aluno, Turma turma){
+        if(!turma.getAlunos().contains(aluno)) {
+            turma.getAlunos().add(aluno);
+        } else {
+            Impressora.imprimirMensagemFormatada(aluno.getNome() + " já está na turma " + turma.getNome());
+        }
+    }
 }
 
 
