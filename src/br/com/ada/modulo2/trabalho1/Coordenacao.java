@@ -30,7 +30,9 @@ public class Coordenacao {
     }
 
     public static void criarTurma(String nome, Professor professor) {
-         Turma.getTurmas().add(new Turma(nome, professor));
+        Turma turma = new Turma(nome, professor);
+         Turma.getTurmas().add(turma);
+         professor.getTurmas().add(turma);
     }
 
     public static void listarTurmas() {

@@ -8,6 +8,7 @@ public class Professor {
 
     private String nome;
     private int ID;
+    private ArrayList<Turma> turmas = new ArrayList<>();
 
     private static ArrayList<Professor> professores = new ArrayList<>();
     private static int contadorDeID = 1;
@@ -44,6 +45,10 @@ public class Professor {
 
     public int getID() {
         return ID;
+    }
+
+    public ArrayList<Turma> getTurmas() {
+        return turmas;
     }
 
     public static ArrayList<Professor> getProfessores() {

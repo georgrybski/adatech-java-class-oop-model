@@ -2,6 +2,7 @@ package br.com.ada.modulo2.trabalho1.utilidades;
 
 
 import br.com.ada.modulo2.trabalho1.Professor;
+import br.com.ada.modulo2.trabalho1.Turma;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -22,10 +23,14 @@ public class Menu {
     private static String[] opcoesDeMenuDinamico(ArrayList<Professor> professores) {
         return professores.stream().map(Professor::toString).collect(Collectors.toList()).toArray(String[]::new);
     }
-    }
 
     public static Professor professores(){
         return Professor.ID(receberInt(opcoesDeMenuDinamico(Professor.getProfessores())));
+    }
+
+    public static void darAula() {
+        var professor = professores();
+        var turma = professor.
     }
 
 
