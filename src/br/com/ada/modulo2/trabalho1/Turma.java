@@ -43,6 +43,9 @@ public class Turma {
         this.professor = professor;
     }
 
+    public int getID() {
+        return ID;
+    }
     public static int getContadorDeTurmas() {
         return contadorDeTurmas;
     }

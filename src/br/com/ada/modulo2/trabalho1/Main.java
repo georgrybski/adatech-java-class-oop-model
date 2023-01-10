@@ -44,34 +44,18 @@ public class Main {
                     break;
 
                 case 7:
-//                    Coordenacao.listarProfessores();
-//                    Coordenacao.listarTurmas();
-//                    Coordenacao.listarProfessores();
-//                    Impressora.imprimirMensagemFormatada("^ Lista de Turmas e Professores acima ^");
-//                    Professor.ID(
-//                            Input.receberInt(1, Professor.getContadorDeID(),
-//                                    "Insira o ID do(a) professor(a)",
-//                                    ("Valor inválido, insira um ID entre + " +
-//                                            1 + " e " + Professor.getContadorDeID())
-//                            )
-//                    ).darAula(Turma.ID(Input.receberInt(1, Turma.getContadorDeTurmas(),
-//                            "Insira o ID da turma",
-//                            ("Valor inválido, insira um ID entre + " +
-//                                    1 + " e " + Turma.getContadorDeTurmas()))));
-//                            "Insira o ID da turma",
-//                            ("Valor inválido, insira um ID entre + " +
-//                                    1 + " e " + Turma.getContadorDeTurmas());
-                    Menu.professores().darAula(Turma.ID(Input.receberInt(1, Turma.getContadorDeTurmas(),
-                            "Insira o ID da turma",
-                            ("Valor inválido, insira um ID entre + " +
-                                    1 + " e " + Turma.getContadorDeTurmas()))));
+                    if(Professor.getProfessores().isEmpty()) {
+                        Impressora.imprimirMensagemFormatada("Cadastre um professor antes de tentar começar uma aula");
+                    } else {
+                        Menu.darAula();
+                    }
                     break;
 
-                case 8:
+                    case 8:
                     if(Professor.getProfessores().isEmpty()) {
                         Impressora.imprimirMensagemFormatada("Cadastre um professor antes de tentar criar uma turma");
                     } else {
-                        System.out.println(Menu.professores().toString());
+                        System.out.println(Menu.menuDeProfessores().toString());
                     }
                     break;
 

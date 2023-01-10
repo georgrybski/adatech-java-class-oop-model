@@ -61,7 +61,7 @@ public class Professor {
 
     @Override
     public String toString() {
-        return "Professor ID " + ID + " | " + nome;
+        return "Prof. ID " + ID + " | " + nome;
     }
 }
 

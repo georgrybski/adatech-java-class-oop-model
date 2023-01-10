@@ -4,6 +4,7 @@ package br.com.ada.modulo2.trabalho1.utilidades;
 import br.com.ada.modulo2.trabalho1.Professor;
 import br.com.ada.modulo2.trabalho1.Turma;
 
+import java.awt.dnd.DragGestureRecognizer;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -20,17 +21,31 @@ public class Menu {
             "5 - Criar Turma", "6 - Lista de Turmas", "7 - Começar Aula" ,"8 - Imprimir Professor" , "9 - Sair"};
 
 
-    private static String[] opcoesDeMenuDinamico(ArrayList<Professor> professores) {
+    private static String[] opcoesDeProfessores(ArrayList<Professor> professores) {
         return professores.stream().map(Professor::toString).collect(Collectors.toList()).toArray(String[]::new);
     }
 
-    public static Professor professores(){
-        return Professor.ID(receberInt(opcoesDeMenuDinamico(Professor.getProfessores())));
+    public static Professor menuDeProfessores(){
+    Impressora.imprimirMensagemFormatada("");
+        return Professor.ID(receberInt(opcoesDeProfessores(Professor.getProfessores())));
+    }
+
+    private static String[] opcoesDeTurmas(ArrayList<Turma> turmas) {
+        return turmas.stream().map(turma -> turma.getID() + " | Turma " + turma.getNome() ).collect(Collectors.toList()).toArray(String[]::new);
+    }
+
+    public static Turma menuDeTurmas(ArrayList<Turma> turmas) {
+        return Turma.ID(receberInt(opcoesDeTurmas(turmas)));
     }
 
     public static void darAula() {
-        var professor = professores();
-        var turma = professor.
+        var professor = menuDeProfessores();
+        var turmas = professor.getTurmas();
+        if (!turmas.isEmpty()) {
+            professor.darAula(menuDeTurmas(turmas));
+        } else {
+            Impressora.imprimirMensagemFormatada(professor.getNome() + " não está alocado a nenhuma turma");
+        }
     }
 
 
