@@ -3,7 +3,7 @@
 ## OOP Classroom
 
 This project is a Java application that emulates the structure of an educational institution. 
-It is was made as part of the first OOP module in an [intensive training program](https://polotech.americanas.io/) 
+It was made as part of the first OOP module in an [intensive training program](https://polotech.americanas.io/) 
 by [Ada](https://ada.tech/sou-aluno).
 
 The project consists of several classes that represent different entities within the educational 
